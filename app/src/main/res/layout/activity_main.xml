@@ -21,13 +21,15 @@
               android:layout_height="wrap_content"
               android:text="Single Player"
               android:id="@+id/singlePlayerButton"
-              android:layout_weight="0.46" />
+              android:layout_weight="0.46"
+              android:clickable="true" />
 
           <Button
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="Multi Player"
               android:id="@+id/multiPlayerButton"
-              android:layout_weight="0.46" />
+              android:layout_weight="0.46"
+              android:clickable="true" />
       </LinearLayout>
   </RelativeLayout>
