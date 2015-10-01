@@ -21,15 +21,31 @@
               android:layout_height="wrap_content"
               android:text="Single Player"
               android:id="@+id/singlePlayerButton"
-              android:layout_weight="0.46"
-              android:clickable="true" />
+              android:layout_weight="0.33"
+              android:clickable="true"
+              android:textSize="35dp"
+              android:onClick="singlePlayerMode" />
 
           <Button
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="Multi Player"
               android:id="@+id/multiPlayerButton"
-              android:layout_weight="0.46"
-              android:clickable="true" />
+              android:layout_weight="0.33"
+              android:clickable="true"
+              android:textSize="35dp"
+              android:onClick="multiPlayerMode"
+              android:nestedScrollingEnabled="false" />
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Statistics"
+              android:id="@+id/statisticsButton"
+              android:layout_gravity="center_horizontal"
+              android:layout_weight="0.33"
+              android:clickable="true"
+              android:textSize="35dp"
+              android:onClick="callStatistics" />
       </LinearLayout>
   </RelativeLayout>

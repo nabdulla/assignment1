@@ -8,6 +8,9 @@ import java.util.List;
  * Created by nabdulla on 9/29/15.
  *
  * A Player class for the single-user mode
+ * all code related to methods on List objects
+ * taken from oracle website, refer to readme for
+ * more information
  */
 public class SinglePlayer extends Player {
     private ArrayList<Double> reactionList;

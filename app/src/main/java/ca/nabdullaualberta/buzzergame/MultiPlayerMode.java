@@ -9,44 +9,45 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MultiPlayerMode extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.multi_player);
     }
 
-    public void singlePlayerMode(View v){
-        Button singleButton = (Button) findViewById(R.id.singlePlayerButton);
-        singleButton.setOnClickListener(new View.OnClickListener() {
+    public void twoPlayerMode(View v){
+        Button twoButton = (Button) findViewById(R.id.two2Button);
+        twoButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, SingleUserMode.class);
+                Intent intent = new Intent(MultiPlayerMode.this, TwoPlayerMode.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void callStatistics(View v){
-        Button statsButton = (Button) findViewById(R.id.statisticsButton);
-        statsButton.setOnClickListener(new View.OnClickListener(){
+    public void threePlayerMode(View v){
+        Button threeButton = (Button) findViewById(R.id.three3button);
+        threeButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
                 setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, Stats.class);
+                Intent intent = new Intent(MultiPlayerMode.this, ThreePlayerMode.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void multiPlayerMode(View v){
-        Button multiButton = (Button) findViewById(R.id.multiPlayerButton);
-        multiButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+    public void fourPlayerMode(View v){
+        Button fourButton = (Button) findViewById(R.id.four4button);
+        fourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, MultiPlayerMode.class);
+                Intent intent = new Intent(MultiPlayerMode.this, FourPlayerMode.class);
                 startActivity(intent);
             }
         });
@@ -55,7 +56,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_multi_player_mode, menu);
         return true;
     }
 

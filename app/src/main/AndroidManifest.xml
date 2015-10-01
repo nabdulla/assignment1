@@ -16,6 +16,54 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SingleUserMode"
+            android:label="@string/title_activity_single_user_mode"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Stats"
+            android:label="@string/title_activity_stats"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MultiPlayerMode"
+            android:label="@string/title_activity_multi_player_mode"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TwoPlayerMode"
+            android:label="@string/title_activity_two_player_mode"
+            android:parentActivityName=".MultiPlayerMode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MultiPlayerMode" />
+        </activity>
+        <activity
+            android:name=".ThreePlayerMode"
+            android:label="@string/title_activity_three_player_mode"
+            android:parentActivityName=".MultiPlayerMode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MultiPlayerMode" />
+        </activity>
+        <activity
+            android:name=".FourPlayerMode"
+            android:label="@string/title_activity_four_player_mode"
+            android:parentActivityName=".MultiPlayerMode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.MultiPlayerMode" />
+        </activity>
     </application>
 
 </manifest>

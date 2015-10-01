@@ -8,27 +8,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="2 Player"
-        android:id="@+id/button2"
+        android:id="@+id/two2Button"
         android:layout_weight="0.33"
         android:clickable="true"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:onClick="twoPlayerMode" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_label3"
-        android:id="@+id/button3"
+        android:id="@+id/three3button"
         android:layout_weight="0.33"
         android:clickable="true"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:onClick="threePlayerMode" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="4 Player"
-        android:id="@+id/button4"
+        android:id="@+id/four4button"
         android:layout_weight="0.33"
         android:clickable="true"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:onClick="fourPlayerMode" />
 
 </LinearLayout>
