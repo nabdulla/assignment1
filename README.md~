@@ -2,12 +2,13 @@
 
 References:
 
-1. Creating an Alert Dialog Box with variable snglAlert
-	-taken from: http://stackoverflow.com/questions/6264694/how-to-add-message-box-with-ok-button
-	-taken from a question asked by Rajkumar Reddy on June 7 2011
-	-edited by sashoalm on December 8 2014
-	-Also taken code from Paresh Mayani on same page (June 7 2011)
-
-2. Methods called on Array lists(e.g list.sublist(),
+1. Methods called on Array lists(e.g list.sublist(),
    list.indexOf(Collections.max(list) etc.)
 	-taken from: http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html
+
+2. https://eclass.srv.ualberta.ca/mod/forum/discuss.php?d=540378
+
+3. String formatting
+	-taken from http://stackoverflow.com/questions/9643610/java-including-variables-within-strings
+	-username Hovercraft Full Of Eels
+	-posted on March 10 2012

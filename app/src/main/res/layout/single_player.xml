@@ -5,11 +5,21 @@
     android:id="@+id/singlePlayerLayout">
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Press this Buzzer when Prompted"
+        android:text="PRESS TO START"
+        android:id="@+id/startButton"
+        android:clickable="true"
+        android:textSize="50dp"
+        android:onClick="getReactionTime" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRESS BUZZER NOW!!!"
         android:id="@+id/buzzerButton"
         android:clickable="true"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:layout_weight=".5" />
 
 </LinearLayout>

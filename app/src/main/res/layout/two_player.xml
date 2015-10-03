@@ -25,9 +25,18 @@
             android:text="Player 2"
             android:id="@+id/player2button"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.55"
+            android:layout_weight="0.50"
             android:textSize="50dp"
             android:clickable="true" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="PRESS TO START"
+            android:id="@+id/start2Button"
+            android:clickable="true"
+            android:textSize="50dp" />
+
     </LinearLayout>
+
 </LinearLayout>

@@ -9,7 +9,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the single player mode, once you press this screen you will be taken to the game. Wait for the prompt and press the buzzer as fast as you can!!!"
+        android:text="This is the single player mode, once you press this screen you will be taken to the game. Press start, wait for the buzzer to appear and press the buzzer as fast as you can!!!"
         android:id="@+id/dialogButton"
         android:clickable="true"
         android:onClick="dialogMode"

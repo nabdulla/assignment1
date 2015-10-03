@@ -39,43 +39,57 @@ public class SingleUserMode extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_player);
+
     }
 
     //Code for this method taken from Anju Eappen on Course
     //discussion, refer to readme (2) for details
-    protected void getReactionTime(){
+    public void getReactionTime(View v){
+        final Button startButton = (Button) findViewById(R.id.startButton);
+        startButton.setVisibility(View.VISIBLE);
+        startButton.setClickable(true);
+        startButton.requestLayout();
+
         final Button buzzer = (Button) findViewById(R.id.buzzerButton);
-        Toast.makeText(getApplicationContext(),"Please Wait",Toast.LENGTH_SHORT).show();
+        buzzer.setVisibility(View.GONE);
+        buzzer.setClickable(false);
+        buzzer.requestLayout();
 
-        final Runnable showButton = new Runnable() {
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                buzzer.setVisibility(View.VISIBLE);
-                buzzer.setClickable(true);
-                buzzer.requestLayout();
-                Toast.makeText(getApplicationContext(),"PRESS BUZZER NOW!!!",Toast.LENGTH_SHORT);
-            }
-        };
+            public void onClick(View view) {
+                startButton.setVisibility(View.GONE);
+                startButton.setClickable(false);
+                startButton.requestLayout();
 
-        final Runnable hideButton = new Runnable() {
-            @Override
-            public void run() {
-                buzzer.setVisibility(View.GONE);
-                buzzer.setClickable(false);
-                buzzer.requestLayout();
-            }
-        };
 
-        final long startTime = System.currentTimeMillis();
-        final long delay = 10 + new Random().nextInt(1990);
-        buzzer.postDelayed(showButton,delay);
+                final Runnable showButton = new Runnable() {
+                    @Override
+                    public void run() {
+                        buzzer.setText("PRESS BUZZER NOW!!!");// refer to readme for references
+                        buzzer.setVisibility(View.VISIBLE);
+                        buzzer.setClickable(true);
+                        buzzer.requestLayout();
+                    }
+                };
 
-        buzzer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buzzer.post(hideButton);
-                v.requestLayout();
-                player.updateReactionList(System.currentTimeMillis()-startTime-delay);
+
+
+                final long startTime = System.currentTimeMillis();
+                final long delay = 10 + new Random().nextInt(1990);
+                buzzer.postDelayed(showButton, delay);
+
+                buzzer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        v.requestLayout();
+                        //player.reactionList.ensureCapacity(100);
+                        //player.updateReactionList(System.currentTimeMillis() - startTime - delay);
+                        String rText = "Reaction Time is "+(System.currentTimeMillis() - startTime - delay)+" ms"; //refer to README (3) for references
+                        Toast.makeText(SingleUserMode.this, rText, Toast.LENGTH_SHORT).show();
+                        getReactionTime(v);
+                    }
+                });
             }
         });
 
