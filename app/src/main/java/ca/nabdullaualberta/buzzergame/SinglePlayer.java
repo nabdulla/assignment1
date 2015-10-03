@@ -9,11 +9,11 @@ import java.util.List;
  *
  * A Player class for the single-user mode
  * all code related to methods on List objects
- * taken from oracle website, refer to readme for
+ * taken from oracle website, refer to readme (1) for
  * more information
  */
 public class SinglePlayer extends Player {
-    private ArrayList<Double> reactionList;
+    protected ArrayList<Long> reactionList;
 
     public SinglePlayer(String playerNo) {
         super(playerNo);
@@ -29,7 +29,7 @@ public class SinglePlayer extends Player {
 
     //Adding the last reaction time to the list for
     //statistical purposes
-    public void updateReactionList(double reactionTime){
+    public void updateReactionList(long reactionTime){
         reactionList.add(0, reactionTime);
 
         //ensuring the list does not contain > 100 data points
@@ -42,8 +42,8 @@ public class SinglePlayer extends Player {
     //Returning the minimum reaction time from a sublist of
     //"reactionList" containing the first "size" number of
     //elements
-    public double minTime(int size) {
-        List<Double> rlist;
+    public long minTime(int size) {
+        List<Long> rlist;
         int minIndex;
 
         rlist = reactionList.subList(0, size);
@@ -54,8 +54,8 @@ public class SinglePlayer extends Player {
     //Returning the maximum reaction time from a sublist of
     //"reactionList" containing the first "size" number of
     //elements
-    public double maxTime(int size){
-        List<Double> rlist;
+    public long maxTime(int size){
+        List<Long> rlist;
         int maxIndex;
 
         rlist = reactionList.subList(0, size);
@@ -67,9 +67,9 @@ public class SinglePlayer extends Player {
     //Returning the average reaction time from a sublist of
     //"reactionList" containing the first "size" number of
     //elements
-    public double avgTime(int size){
-        List<Double> rlist;
-        double sum = 0;
+    public long avgTime(int size){
+        List<Long> rlist;
+        int sum = 0;
 
         rlist = reactionList.subList(0, size);
         for (int i = 0; i < rlist.size()-1; i++) {
@@ -82,8 +82,8 @@ public class SinglePlayer extends Player {
     //Returning the median reaction time from a sublist of
     //"reactionList" containing the first "size" number of
     //elements
-    public double medTime(int size){
-        List<Double> rlist;
+    public long medTime(int size){
+        List<Long> rlist;
         int medIndex;
 
         rlist = reactionList.subList(0,size);

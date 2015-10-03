@@ -1,6 +1,5 @@
 package ca.nabdullaualberta.buzzergame;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,53 +8,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+//Prompt the user before beginning the Single Player Mode
+
+public class SingleDialog extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_single_dialog);
     }
 
-    public void singlePlayerMode(View v){
-        Button singleButton = (Button) findViewById(R.id.singlePlayerButton);
+
+    public void dialogMode(View v){
+
+        Button singleButton = (Button) findViewById(R.id.dialogButton);
         singleButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, SingleDialog.class);
+                Intent intent = new Intent(SingleDialog.this,SingleUserMode.class);
                 startActivity(intent);
+
             }
         });
     }
 
-    public void callStatistics(View v){
-        Button statsButton = (Button) findViewById(R.id.statisticsButton);
-        statsButton.setOnClickListener(new View.OnClickListener(){
 
-            public void onClick(View v){
-                setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, Stats.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void multiPlayerMode(View v){
-        Button multiButton = (Button) findViewById(R.id.multiPlayerButton);
-        multiButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, MultiPlayerMode.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_single_dialog, menu);
         return true;
     }
 

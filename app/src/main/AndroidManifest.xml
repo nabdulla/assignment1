@@ -64,6 +64,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.nabdullaualberta.buzzergame.MultiPlayerMode" />
         </activity>
+        <activity
+            android:name=".SingleDialog"
+            android:label="@string/title_activity_single_dialog"
+            android:parentActivityName=".SingleUserMode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.nabdullaualberta.buzzergame.SingleUserMode" />
+        </activity>
     </application>
 
 </manifest>

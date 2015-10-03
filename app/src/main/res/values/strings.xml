@@ -11,4 +11,6 @@
     <string name="title_activity_two_player_mode">TwoPlayerMode</string>
     <string name="title_activity_three_player_mode">ThreePlayerMode</string>
     <string name="title_activity_four_player_mode">Four Player Mode</string>
+    <string name="title_activity_single_player_dialog">SinglePlayerDialog</string>
+    <string name="title_activity_single_dialog">SingleDialog</string>
 </resources>

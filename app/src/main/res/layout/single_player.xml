@@ -7,7 +7,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:text="Press Buzzer when Prompted"
+        android:text="Press this Buzzer when Prompted"
         android:id="@+id/buzzerButton"
         android:clickable="true"
         android:textSize="50dp" />
