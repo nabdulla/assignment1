@@ -3,6 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="PRESS TO START"
+        android:id="@+id/start3Button"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:textSize="50dp"
+        android:onClick="play3Player" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

@@ -13,11 +13,19 @@ import java.util.List;
  * more information
  */
 public class SinglePlayer extends Player {
-    protected ArrayList<Long> reactionList;
+    public ArrayList<Long> reactionList = new ArrayList<Long>();
 
     public SinglePlayer(String playerNo) {
         super(playerNo);
         this.setPlayerNo(playerNo);
+    }
+
+    public ArrayList<Long> getReactionList() {
+        return reactionList;
+    }
+
+    public void setReactionList(ArrayList<Long> reactionList) {
+        this.reactionList = reactionList;
     }
 
     /*

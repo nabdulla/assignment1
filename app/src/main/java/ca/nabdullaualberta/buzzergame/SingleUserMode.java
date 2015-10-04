@@ -17,6 +17,7 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -29,10 +30,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class SingleUserMode extends ActionBarActivity {
 
-    private static final String FILENAME = "file.sav";
+    private static final String FILENAME = "file1.sav";
     private SinglePlayer player = new SinglePlayer("Player");
+    protected FileManager fileManager = new FileManager(FILENAME);
+    public Context context = this.getBaseContext();
     private ArrayAdapter<Long> adapter;
 
     @Override
@@ -40,6 +46,13 @@ public class SingleUserMode extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_player);
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        player.setReactionList(new ArrayList<Long>());
+        //player.setReactionList(fileManager.loadFromFile(player, context));
     }
 
     //Code for this method taken from Anju Eappen on Course
@@ -66,7 +79,6 @@ public class SingleUserMode extends ActionBarActivity {
                 final Runnable showButton = new Runnable() {
                     @Override
                     public void run() {
-                        buzzer.setText("PRESS BUZZER NOW!!!");// refer to readme for references
                         buzzer.setVisibility(View.VISIBLE);
                         buzzer.setClickable(true);
                         buzzer.requestLayout();
@@ -83,9 +95,9 @@ public class SingleUserMode extends ActionBarActivity {
                     @Override
                     public void onClick(View v) {
                         v.requestLayout();
-                        //player.reactionList.ensureCapacity(100);
-                        //player.updateReactionList(System.currentTimeMillis() - startTime - delay);
-                        String rText = "Reaction Time is "+(System.currentTimeMillis() - startTime - delay)+" ms"; //refer to README (3) for references
+                        player.updateReactionList(System.currentTimeMillis() - startTime - delay);
+                        //fileManager.saveInFile(player.getReactionList(),context);
+                        String rText = "Reaction Time is "+player.reactionList.get(0)+" ms";
                         Toast.makeText(SingleUserMode.this, rText, Toast.LENGTH_SHORT).show();
                         getReactionTime(v);
                     }

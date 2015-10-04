@@ -5,9 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class TwoPlayerMode extends ActionBarActivity {
 
+    private static final String FILENAME = "file2.sav";
+    private MultiPlayer player1 = new MultiPlayer("Player 1");
+    private MultiPlayer player2 = new MultiPlayer("Player 2");
+    private ArrayAdapter<MultiPlayer> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +23,65 @@ public class TwoPlayerMode extends ActionBarActivity {
 
     public void play2Player(View v){
 
+        final Button start2Button = (Button) findViewById(R.id.start2Button);
+        start2Button.setVisibility(View.VISIBLE);
+        start2Button.setClickable(true);
+        start2Button.requestLayout();
+
+        final Button firstPlayer = (Button) findViewById(R.id.player1button);
+        firstPlayer.setVisibility(View.GONE);
+        firstPlayer.setClickable(false);
+        firstPlayer.requestLayout();
+
+        final Button secondPlayer = (Button) findViewById(R.id.player2button);
+        secondPlayer.setVisibility(View.GONE);
+        secondPlayer.setClickable(false);
+        secondPlayer.requestLayout();
+
+        start2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start2Button.setVisibility(View.GONE);
+                start2Button.setClickable(false);
+                start2Button.requestLayout();
+
+                final Runnable showButton = new Runnable() {
+                    @Override
+                    public void run() {
+                        firstPlayer.setVisibility(View.VISIBLE);
+                        firstPlayer.setClickable(true);
+                        firstPlayer.requestLayout();
+
+                        secondPlayer.setVisibility(View.VISIBLE);
+                        secondPlayer.setClickable(true);
+                        secondPlayer.requestLayout();
+                    }
+                };
+
+                firstPlayer.post(showButton);
+
+                firstPlayer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        view.requestLayout();
+                        Toast.makeText(TwoPlayerMode.this, "Player 1", Toast.LENGTH_SHORT).show();
+                        //player1.addBuzz();
+                        play2Player(view);
+
+                    }
+                });
+
+                secondPlayer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        view.requestLayout();
+                        Toast.makeText(TwoPlayerMode.this, "Player 2", Toast.LENGTH_SHORT).show();
+                        //player2.addBuzz();
+                        play2Player(view);
+                    }
+                });
+            }
+        });
     }
 
     @Override

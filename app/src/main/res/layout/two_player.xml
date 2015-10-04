@@ -35,7 +35,8 @@
             android:text="PRESS TO START"
             android:id="@+id/start2Button"
             android:clickable="true"
-            android:textSize="50dp" />
+            android:textSize="50dp"
+            android:onClick="play2Player" />
 
     </LinearLayout>
 
