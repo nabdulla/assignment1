@@ -37,12 +37,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -70,7 +72,7 @@ public class SingleUserMode extends ActionBarActivity {
 
     //Code for this method taken from Anju Eappen on Course
     //discussion, refer to readme (2) for details
-    public void getReactionTime(View v){
+    public void getReactionTime(final View v){
         final Button startButton = (Button) findViewById(R.id.startButton);
         startButton.setVisibility(View.VISIBLE);
         startButton.setClickable(true);
@@ -80,6 +82,8 @@ public class SingleUserMode extends ActionBarActivity {
         buzzer.setVisibility(View.GONE);
         buzzer.setClickable(false);
         buzzer.requestLayout();
+
+        final LinearLayout singlePlayerLayout = (LinearLayout) findViewById(R.id.singlePlayerLayout);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +107,24 @@ public class SingleUserMode extends ActionBarActivity {
                 final long startTime = System.currentTimeMillis();
                 final long delay = 10 + new Random().nextInt(1990);
                 buzzer.postDelayed(showButton, delay);
+
+                //if the user presses the screen too early
+                singlePlayerLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder clickEarly = new AlertDialog.Builder(SingleUserMode.this);
+                        clickEarly.setTitle("You pressed the screen too early");
+                        clickEarly.setMessage("Please wait for the Buzzer to appear on the screen");
+                        clickEarly.setCancelable(false);
+                        clickEarly.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                getReactionTime(v);
+                            }
+                        }).create().show();
+
+                    }
+                });
 
                 buzzer.setOnClickListener(new View.OnClickListener() {
                     @Override
