@@ -1,3 +1,18 @@
+/*Copyright 2015 Nabil Abdulla
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+*/
+
 package ca.nabdullaualberta.buzzergame;
 
 import android.app.Activity;
@@ -21,7 +36,7 @@ public class MainActivity extends Activity {
         Button singleButton = (Button) findViewById(R.id.singlePlayerButton);
         singleButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
+            public void onClick(View v) {//to go to reaction time game
                 setResult(RESULT_OK);
                 Intent intent = new Intent(MainActivity.this, SingleDialog.class);
                 startActivity(intent);
@@ -33,7 +48,7 @@ public class MainActivity extends Activity {
         Button statsButton = (Button) findViewById(R.id.statisticsButton);
         statsButton.setOnClickListener(new View.OnClickListener(){
 
-            public void onClick(View v){
+            public void onClick(View v){//to go to statistics page
                 setResult(RESULT_OK);
                 Intent intent = new Intent(MainActivity.this, Stats.class);
                 startActivity(intent);
@@ -44,7 +59,7 @@ public class MainActivity extends Activity {
     public void multiPlayerMode(View v){
         Button multiButton = (Button) findViewById(R.id.multiPlayerButton);
         multiButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            public void onClick(View v){//to go to multiplayer mode
                 setResult(RESULT_OK);
                 Intent intent = new Intent(MainActivity.this, MultiPlayerMode.class);
                 startActivity(intent);
