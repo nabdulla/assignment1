@@ -144,6 +144,20 @@ public class FileManager {
 
     protected void clearFile(MultiPlayer multiPlayer){
         ArrayList<MultiPlayer> players = new ArrayList<MultiPlayer>();
+
+        if (multiPlayer.getNumPlayers() == 2) {
+            players.add(new MultiPlayer("Player 1"));
+            players.add(new MultiPlayer("Player 2"));
+        } else if(multiPlayer.getNumPlayers() == 3){
+            players.add(new MultiPlayer("Player 1"));
+            players.add(new MultiPlayer("Player 2"));
+            players.add(new MultiPlayer("Player 3"));
+        } else if(multiPlayer.getNumPlayers() == 4){
+            players.add(new MultiPlayer("Player 1"));
+            players.add(new MultiPlayer("Player 2"));
+            players.add(new MultiPlayer("Player 3"));
+            players.add(new MultiPlayer("Player 4"));
+        }
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
             OutputStreamWriter writer = new OutputStreamWriter(fos);

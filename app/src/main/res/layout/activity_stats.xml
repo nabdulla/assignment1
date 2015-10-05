@@ -29,7 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"
-            android:id="@+id/emailButton" />
+            android:id="@+id/emailButton"
+            android:onClick="emailStats"
+            android:clickable="true" />
     </LinearLayout>
 
     <TextView

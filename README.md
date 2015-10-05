@@ -8,3 +8,7 @@ References:
 
 2. https://eclass.srv.ualberta.ca/mod/forum/discuss.php?d=540378
 
+3. Sending an Email
+	-taken from: http://developer.android.com/guide/components/intents-common.html#Email
+	-under "Compose an Email with optional attachments
+

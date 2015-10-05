@@ -8,7 +8,7 @@ References:
 
 2. https://eclass.srv.ualberta.ca/mod/forum/discuss.php?d=540378
 
-3. String formatting
-	-taken from http://stackoverflow.com/questions/9643610/java-including-variables-within-strings
-	-username Hovercraft Full Of Eels
-	-posted on March 10 2012
+3. Sending an Email
+	-taken from: http://developer.android.com/guide/components/intents-common.html#Email
+	-under "Compose an Email with optional attachments
+

@@ -28,13 +28,6 @@ public class SinglePlayer extends Player {
         this.reactionList = reactionList;
     }
 
-    /*
-    //Ensuring the List can hold 100 data points
-    public void setReactionList(ArrayList reactionList) {
-        reactionList.ensureCapacity(100);
-    }
-    */
-
     //Adding the last reaction time to the list for
     //statistical purposes
     public void updateReactionList(long reactionTime){
@@ -56,9 +49,14 @@ public class SinglePlayer extends Player {
         int rlsize = reactionList.size();
 
         if (size<rlsize){
-            rlist = reactionList.subList(0, size - 1);
-        } else {
-            rlist = reactionList.subList(0,rlsize-1);
+            rlist = reactionList.subList(0, size);
+        } else if (rlsize == 0) {
+            return 0;
+        }else if (rlsize == 1) {
+            return reactionList.get(0);
+        }
+        else {
+            rlist = reactionList.subList(0,rlsize);
         }
         minIndex = rlist.indexOf(Collections.min(rlist));
         return rlist.get(minIndex);
@@ -73,9 +71,13 @@ public class SinglePlayer extends Player {
         int rlsize = reactionList.size();
 
         if (size<rlsize){
-            rlist = reactionList.subList(0, size - 1);
+            rlist = reactionList.subList(0, size);
+        } else if (rlsize == 0) {
+            return 0;
+        }else if (rlsize == 1) {
+            return reactionList.get(0);
         } else {
-            rlist = reactionList.subList(0,rlsize-1);
+            rlist = reactionList.subList(0, rlsize);
         }
         maxIndex = rlist.indexOf(Collections.max(rlist));
         return rlist.get(maxIndex);
@@ -87,19 +89,25 @@ public class SinglePlayer extends Player {
     public long avgTime(int size){
         List<Long> rlist;
         int sum = 0;
+        int count = 0;
         int rlsize = reactionList.size();
 
         if (size<rlsize){
-            rlist = reactionList.subList(0, size - 1);
+            rlist = reactionList.subList(0, size);
+        } else if (rlsize == 0) {
+            return 0;
+        }else if (rlsize == 1) {
+            return reactionList.get(0);
         } else {
-            rlist = reactionList.subList(0,rlsize-1);
+            rlist = reactionList.subList(0,rlsize);
             size = rlsize;
         }
-        for (int i = 0; i < rlist.size()-1; i++) {
+        for (int i = 0; i < rlist.size(); i++) {
             sum += rlist.get(i);
+            count += 1;
         }
 
-        return sum/size;
+        return sum/count;
     }
 
     //Returning the median reaction time from a sublist of
@@ -111,10 +119,14 @@ public class SinglePlayer extends Player {
         int rlsize = reactionList.size();
 
         if (size<rlsize){
-            rlist = reactionList.subList(0, size - 1);
+            rlist = reactionList.subList(0, size);
             medIndex = size/2;
+        } else if (rlsize == 0) {
+            return 0;
+        } else if (rlsize == 1) {
+            return reactionList.get(0);
         } else {
-            rlist = reactionList.subList(0,rlsize-1);
+            rlist = reactionList.subList(0,rlsize);
             medIndex = rlsize/2;
         }
 

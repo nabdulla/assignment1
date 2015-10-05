@@ -1,6 +1,8 @@
 package ca.nabdullaualberta.buzzergame;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -109,20 +111,63 @@ public class Stats extends ActionBarActivity {
 
     }
 
-    protected void clearStats(View v){
+    public void clearStats(View v){
         final Button clearButton = (Button) findViewById(R.id.clearButton);
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.requestLayout();
                 fileManager1.clearFile(player1);
                 fileManager2.clearFile(player2);
                 fileManager3.clearFile(player3);
                 fileManager4.clearFile(player4);
+
+                player1.setReactionList(fileManager1.loadFromFile(player1));
+                players2 = fileManager2.loadFromFile(player2);
+                players3 = fileManager3.loadFromFile(player3);
+                players4 = fileManager4.loadFromFile(player4);
+
+                onePlayerString = "Single Player: \nMinimum Reaction Time:\nLast 10: " +
+                        player1.minTime(10) + " ms, Last 100: " + player1.minTime(100) +
+                        " ms\n\nMaximum Reaction Time:\nLast 10: " + player1.maxTime(10) +
+                        " ms, Last 100: " + player1.maxTime(100) + " ms\n\nAverage Reaction Time:"
+                        + "\nLast 10: " + player1.avgTime(10) + " ms, Last 100: " +
+                        player1.avgTime(100) + " ms\n\nMedian Reaction Time:\nLast 10: " +
+                        player1.medTime(10) + " ms, Last 100: " + player1.medTime(100) + " ms\n\n";
+
+                twoPlayerString = "2 Player:\nPlayer 1 buzzes: " + players2.get(0).getnBuzzes()
+                        + ", Player 2 buzzes: " + players2.get(1).getnBuzzes() + "\n\n";
+                threePlayerString = "3 Player:\nPlayer 1 buzzes: " + players3.get(0).getnBuzzes()
+                        + ", Player 2 buzzes: " + players3.get(1).getnBuzzes() + "\n" +
+                        "Player 3 buzzes: " + players3.get(2).getnBuzzes() + "\n\n";
+                fourPlayerString = "4 Player:\nPlayer 1 buzzes: " + players4.get(0).getnBuzzes()
+                        + ", Player 2 buzzes: " + players4.get(1).getnBuzzes() + "\n" +
+                        "Player 3 buzzes: " + players4.get(2).getnBuzzes() + ", Player 4 " +
+                        "buzzes: " + players4.get(3).getnBuzzes() + "\n\n";
+                gameStats = onePlayerString + twoPlayerString + threePlayerString + fourPlayerString;
+
+                stats.setText(gameStats);
+                view.requestLayout();
             }
         });
 
+    }
+
+    public void emailStats(View v){// code for sending an email taken from android developers webpage
+                                   // refer to readme(3) for more info
+        final Button emailButton = (Button) findViewById(R.id.emailButton);
+
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto: "));
+                intent.putExtra(intent.EXTRA_TEXT,gameStats);
+                if (intent.resolveActivity(getPackageManager()) != null){
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
