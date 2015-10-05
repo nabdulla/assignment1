@@ -12,7 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-For video on the app demonstration, go to the docs folder where the UML diagram is located
+For video on the app demonstration, look for the 'nabdulla-reflex.mkv' video in the docs folder where the UML diagram is located
 
 # assignment1
 
