@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * Created by nabdulla on 9/29/15.
  *
- * A Player class for the single-user mode
+ * A Player class for the single-user mode, Class records reaction times
+ * in an ArrayList<Long> and calculates various statistics about the list
  * all code related to methods on List objects
  * taken from oracle website, refer to readme (1) for
  * more information

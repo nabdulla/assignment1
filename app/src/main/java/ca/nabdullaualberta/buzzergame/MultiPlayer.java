@@ -16,7 +16,9 @@
 package ca.nabdullaualberta.buzzergame;
 
 /**
- * Created by nabdulla on 9/29/15. A class for players in the multiplayer mode
+ * Created by nabdulla on 9/29/15. A class for players in the multiplayer modes
+ * contains number of buzzes pressed for a Multiplayer as well as the number of players
+ * for the game
  */
 public class MultiPlayer extends Player {
     private int nBuzzes = 0;

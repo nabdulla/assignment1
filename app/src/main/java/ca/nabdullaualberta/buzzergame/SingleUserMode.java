@@ -50,6 +50,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+//A single player Game mode for recording reaction times of
+//buzzer presses
 public class SingleUserMode extends ActionBarActivity {
 
     private static final String FILENAME = "file1.sav";
@@ -109,6 +111,8 @@ public class SingleUserMode extends ActionBarActivity {
                 buzzer.postDelayed(showButton, delay);
 
                 //if the user presses the screen too early
+                //code for AlertDialog taken from stack overflow
+                //refer to readme(4) for more info
                 singlePlayerLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

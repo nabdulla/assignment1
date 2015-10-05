@@ -49,6 +49,9 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+//An activity which displays, emails, and clears game statistics
+//from SingleUserMode,TwoPlayerMode,ThreePlayerMode and
+//FourPlayerMode
 public class Stats extends ActionBarActivity {
 
     private final static String FILENAME1 = "file1.sav";

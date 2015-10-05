@@ -24,6 +24,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Created by nabdulla on 10/3/15. Takes user to screen where the user then
+ * selects the number of players
+ */
 public class MultiPlayerMode extends ActionBarActivity {
 
     @Override

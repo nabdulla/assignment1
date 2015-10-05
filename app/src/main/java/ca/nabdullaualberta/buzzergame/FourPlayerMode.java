@@ -26,6 +26,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Created by nabdulla on 10/3/15. Class used for playing the
+ * Multiplayer game for four players
+ */
 public class FourPlayerMode extends ActionBarActivity {
 
     private static final String FILENAME = "file4.sav";

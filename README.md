@@ -12,7 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-For video on the app demonstration, look for the 'nabdulla-reflex.mkv' video in the docs folder where the UML diagram is located
+For video on the app demonstration as per assignment 1 requirements, look for the 'nabdulla-reflex.mkv' video in the docs folder where the UML diagram is located
 
 # assignment1
 
@@ -32,4 +32,9 @@ References:
 	-Used in Stats java file
 	-taken from: http://developer.android.com/guide/components/intents-common.html#Email
 	-under "Compose an Email with optional attachments
+
+4. Creating and Displaying an Alert Dialog
+	-taken from http://stackoverflow.com/questions/2115758/how-to-display-alert-dialog-in-android
+	-answer to question posted by user3716835
+	-was edited Feb 11 2015
 
