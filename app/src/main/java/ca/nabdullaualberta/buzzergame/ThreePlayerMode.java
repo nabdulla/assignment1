@@ -9,18 +9,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class ThreePlayerMode extends ActionBarActivity {
 
     private static final String FILENAME = "file3.sav";
-    private MultiPlayer player1 = new MultiPlayer("Player 1");
-    private MultiPlayer player2 = new MultiPlayer("Player 2");
-    private MultiPlayer player3 = new MultiPlayer("Player 3");
-    private ArrayAdapter<MultiPlayer> adapter;
+    private MultiPlayer player = new MultiPlayer("Player");
+    private ArrayList<MultiPlayer> players;
+    protected FileManager fileManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.three_player);
+        fileManager = new FileManager(FILENAME,this.getBaseContext());
+        player.setNumPlayers(3);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        players = fileManager.loadFromFile(player);
     }
 
     public void play3Player(View v){
@@ -75,7 +84,8 @@ public class ThreePlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(ThreePlayerMode.this, "Player 1", Toast.LENGTH_SHORT).show();
-                        //player1.addBuzz();
+                        players.get(0).addBuzz();
+                        fileManager.saveInFile(players);
                         play3Player(view);
                     }
                 });
@@ -85,7 +95,8 @@ public class ThreePlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(ThreePlayerMode.this, "Player 2", Toast.LENGTH_SHORT).show();
-                        //player2.addBuzz();
+                        players.get(1).addBuzz();
+                        fileManager.saveInFile(players);
                         play3Player(view);
                     }
                 });
@@ -95,7 +106,8 @@ public class ThreePlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(ThreePlayerMode.this, "Player 3", Toast.LENGTH_SHORT).show();
-                        //player3.addBuzz();
+                        players.get(2).addBuzz();
+                        fileManager.saveInFile(players);
                         play3Player(view);
                     }
                 });

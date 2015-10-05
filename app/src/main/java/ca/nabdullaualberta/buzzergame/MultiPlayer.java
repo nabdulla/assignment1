@@ -6,7 +6,6 @@ package ca.nabdullaualberta.buzzergame;
 public class MultiPlayer extends Player {
     private int nBuzzes;
     private int numPlayers;
-    protected long reactionTime;
 
     public MultiPlayer(String playerNo) {
         super(playerNo);
@@ -37,11 +36,5 @@ public class MultiPlayer extends Player {
         return numPlayers;
     }
 
-    protected long getReactionTime(){
-        return this.reactionTime;
-    }
 
-    protected void setReactionTime(long rTime){
-        this.reactionTime = rTime;
-    }
 }

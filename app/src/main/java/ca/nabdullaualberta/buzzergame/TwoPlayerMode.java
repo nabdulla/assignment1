@@ -9,16 +9,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class TwoPlayerMode extends ActionBarActivity {
 
     private static final String FILENAME = "file2.sav";
-    private MultiPlayer player1 = new MultiPlayer("Player 1");
-    private MultiPlayer player2 = new MultiPlayer("Player 2");
-    private ArrayAdapter<MultiPlayer> adapter;
+    private MultiPlayer player = new MultiPlayer("Player");
+    protected FileManager fileManager;
+    private ArrayList<MultiPlayer> players;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two_player);
+        fileManager = new FileManager(FILENAME,this.getBaseContext());
+        player.setNumPlayers(2);
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        players = fileManager.loadFromFile(player);
     }
 
     public void play2Player(View v){
@@ -65,7 +77,8 @@ public class TwoPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(TwoPlayerMode.this, "Player 1", Toast.LENGTH_SHORT).show();
-                        //player1.addBuzz();
+                        players.get(0).addBuzz();
+                        fileManager.saveInFile(players);
                         play2Player(view);
 
                     }
@@ -76,7 +89,8 @@ public class TwoPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(TwoPlayerMode.this, "Player 2", Toast.LENGTH_SHORT).show();
-                        //player2.addBuzz();
+                        players.get(1).addBuzz();
+                        fileManager.saveInFile(players);
                         play2Player(view);
                     }
                 });

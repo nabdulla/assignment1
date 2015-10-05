@@ -51,13 +51,18 @@ public class SinglePlayer extends Player {
     //"reactionList" containing the first "size" number of
     //elements
     public long minTime(int size) {
-        List<Long> rlist;
+        List<Long> rlist = new ArrayList<>();
         int minIndex;
+        int rlsize = reactionList.size();
 
-        rlist = reactionList.subList(0, size);
+        if (size<rlsize){
+            rlist = reactionList.subList(0, size - 1);
+        } else {
+            rlist = reactionList.subList(0,rlsize-1);
+        }
         minIndex = rlist.indexOf(Collections.min(rlist));
-
         return rlist.get(minIndex);
+
     }
     //Returning the maximum reaction time from a sublist of
     //"reactionList" containing the first "size" number of
@@ -65,10 +70,14 @@ public class SinglePlayer extends Player {
     public long maxTime(int size){
         List<Long> rlist;
         int maxIndex;
+        int rlsize = reactionList.size();
 
-        rlist = reactionList.subList(0, size);
+        if (size<rlsize){
+            rlist = reactionList.subList(0, size - 1);
+        } else {
+            rlist = reactionList.subList(0,rlsize-1);
+        }
         maxIndex = rlist.indexOf(Collections.max(rlist));
-
         return rlist.get(maxIndex);
     }
 
@@ -78,8 +87,14 @@ public class SinglePlayer extends Player {
     public long avgTime(int size){
         List<Long> rlist;
         int sum = 0;
+        int rlsize = reactionList.size();
 
-        rlist = reactionList.subList(0, size);
+        if (size<rlsize){
+            rlist = reactionList.subList(0, size - 1);
+        } else {
+            rlist = reactionList.subList(0,rlsize-1);
+            size = rlsize;
+        }
         for (int i = 0; i < rlist.size()-1; i++) {
             sum += rlist.get(i);
         }
@@ -93,10 +108,17 @@ public class SinglePlayer extends Player {
     public long medTime(int size){
         List<Long> rlist;
         int medIndex;
+        int rlsize = reactionList.size();
 
-        rlist = reactionList.subList(0,size);
+        if (size<rlsize){
+            rlist = reactionList.subList(0, size - 1);
+            medIndex = size/2;
+        } else {
+            rlist = reactionList.subList(0,rlsize-1);
+            medIndex = rlsize/2;
+        }
+
         Collections.sort(rlist);
-        medIndex = size/2;
 
         return rlist.get(medIndex);
     }

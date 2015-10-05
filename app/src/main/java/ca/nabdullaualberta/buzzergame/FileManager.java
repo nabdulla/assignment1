@@ -31,6 +31,21 @@ import com.google.gson.reflect.TypeToken;
  */
 public class FileManager {
     final protected String FILENAME;
+    protected Context context;
+
+    public FileManager(String FILENAME, Context context) {
+        this.FILENAME = FILENAME;
+        this.context = context;
+    }
+
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     public String getFILENAME() {
         return FILENAME;
@@ -40,7 +55,7 @@ public class FileManager {
         this.FILENAME = fileName;
     }
 
-    protected ArrayList<Long> loadFromFile(SinglePlayer player, Context context) {
+    protected ArrayList<Long> loadFromFile(SinglePlayer player) {
 
         ArrayList<Long> reactionTimes = new ArrayList<Long>();
         try {
@@ -50,6 +65,7 @@ public class FileManager {
             Type listType = new TypeToken<ArrayList<Long>>() {
             }.getType();
             reactionTimes = gson.fromJson(in, listType);
+            fis.close();
         } catch (FileNotFoundException e) {
             reactionTimes = new ArrayList<Long>();
         } catch (IOException e) {
@@ -60,7 +76,7 @@ public class FileManager {
     }
 
 
-    protected ArrayList<MultiPlayer> loadFromFile(MultiPlayer player, Context context){
+    protected ArrayList<MultiPlayer> loadFromFile(MultiPlayer player){
         ArrayList<MultiPlayer> players = new ArrayList<>();
         try {
             FileInputStream fis = context.openFileInput(FILENAME);
@@ -68,8 +84,22 @@ public class FileManager {
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<MultiPlayer>>(){}.getType();
             players = gson.fromJson(in, listType);
+            fis.close();
         } catch (FileNotFoundException e){
             players = new ArrayList<MultiPlayer>();
+            if(player.getNumPlayers() == 2) {
+                players.add(0,new MultiPlayer("Player 2"));
+                players.add(0,new MultiPlayer("Player 1"));
+            } else if(player.getNumPlayers() == 3) {
+                players.add(0,new MultiPlayer("Player 3"));
+                players.add(0,new MultiPlayer("Player 2"));
+                players.add(0,new MultiPlayer("Player 1"));
+            } else if(player.getNumPlayers() == 4) {
+                players.add(0,new MultiPlayer("Player 4"));
+                players.add(0,new MultiPlayer("Player 3"));
+                players.add(0,new MultiPlayer("Player 2"));
+                players.add(0,new MultiPlayer("Player 1"));
+            }
         } catch (IOException e){
             throw new RuntimeException(e);
         }
@@ -77,12 +107,48 @@ public class FileManager {
         return players;
     }
 
-    protected void saveInFile(List list, Context context){
+    protected void saveInFile(List list){
         try {
-            FileOutputStream fos = context.openFileOutput(FILENAME, 0);
+            FileOutputStream fos = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
             gson.toJson(list, writer);
+            writer.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void clearFile(SinglePlayer singlePlayer){
+        ArrayList<Long> reactionList = new ArrayList<>();
+        try {
+            FileOutputStream fos = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(reactionList, writer);
+            writer.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void clearFile(MultiPlayer multiPlayer){
+        ArrayList<MultiPlayer> players = new ArrayList<MultiPlayer>();
+        try {
+            FileOutputStream fos = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(players, writer);
             writer.flush();
             fos.close();
         } catch (FileNotFoundException e) {

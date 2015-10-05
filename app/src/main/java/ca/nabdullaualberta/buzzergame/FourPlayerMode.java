@@ -9,19 +9,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FourPlayerMode extends ActionBarActivity {
 
     private static final String FILENAME = "file4.sav";
-    private MultiPlayer player1 = new MultiPlayer("Player 1");
-    private MultiPlayer player2 = new MultiPlayer("Player 2");
-    private MultiPlayer player3 = new MultiPlayer("Player 3");
-    private MultiPlayer player4 = new MultiPlayer("Player 4");
-    private ArrayAdapter<MultiPlayer> adapter;
+    private MultiPlayer player = new MultiPlayer("Player");
+    private ArrayList<MultiPlayer> players;
+    protected FileManager fileManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.four_player);
+        fileManager = new FileManager(FILENAME,this.getBaseContext());
+        player.setNumPlayers(4);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        players = fileManager.loadFromFile(player);
     }
 
     public void play4Player(View v){
@@ -87,7 +95,8 @@ public class FourPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(FourPlayerMode.this, "Player 1", Toast.LENGTH_SHORT).show();
-                        //player1.addBuzz();
+                        players.get(0).addBuzz();
+                        fileManager.saveInFile(players);
                         play4Player(view);
                     }
                 });
@@ -97,7 +106,8 @@ public class FourPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(FourPlayerMode.this, "Player 2", Toast.LENGTH_SHORT).show();
-                        //player2.addBuzz();
+                        players.get(1).addBuzz();
+                        fileManager.saveInFile(players);
                         play4Player(view);
                     }
                 });
@@ -107,7 +117,8 @@ public class FourPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(FourPlayerMode.this, "Player 3", Toast.LENGTH_SHORT).show();
-                        //player3.addBuzz();
+                        players.get(2).addBuzz();
+                        fileManager.saveInFile(players);
                         play4Player(view);
                     }
                 });
@@ -117,7 +128,8 @@ public class FourPlayerMode extends ActionBarActivity {
                     public void onClick(View view) {
                         view.requestLayout();
                         Toast.makeText(FourPlayerMode.this, "Player 4", Toast.LENGTH_SHORT).show();
-                        //player4.addBuzz();
+                        players.get(3).addBuzz();
+                        fileManager.saveInFile(players);
                         play4Player(view);
                     }
                 });

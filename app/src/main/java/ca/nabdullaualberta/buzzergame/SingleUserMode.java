@@ -36,23 +36,21 @@ import com.google.gson.reflect.TypeToken;
 public class SingleUserMode extends ActionBarActivity {
 
     private static final String FILENAME = "file1.sav";
-    private SinglePlayer player = new SinglePlayer("Player");
-    protected FileManager fileManager = new FileManager(FILENAME);
-    public Context context = this.getBaseContext();
-    private ArrayAdapter<Long> adapter;
+    public SinglePlayer player = new SinglePlayer("Player");
+    protected FileManager fileManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_player);
+        fileManager = new FileManager(FILENAME,this.getBaseContext());
 
     }
 
     @Override
     protected void onStart(){
         super.onStart();
-        player.setReactionList(new ArrayList<Long>());
-        //player.setReactionList(fileManager.loadFromFile(player, context));
+        player.setReactionList(fileManager.loadFromFile(player));
     }
 
     //Code for this method taken from Anju Eappen on Course
@@ -96,7 +94,7 @@ public class SingleUserMode extends ActionBarActivity {
                     public void onClick(View v) {
                         v.requestLayout();
                         player.updateReactionList(System.currentTimeMillis() - startTime - delay);
-                        //fileManager.saveInFile(player.getReactionList(),context);
+                        fileManager.saveInFile(player.getReactionList());
                         String rText = "Reaction Time is "+player.reactionList.get(0)+" ms";
                         Toast.makeText(SingleUserMode.this, rText, Toast.LENGTH_SHORT).show();
                         getReactionTime(v);
